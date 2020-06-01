@@ -15,7 +15,7 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
-        public const string SourceDir = @"C:\Users\KhangOD\Desktop\Test\";
+        public const string SourceDir = @"C:\Users\Thanh\Desktop\Test\";
         public struct Node
         {
             public string PreLink;
@@ -217,26 +217,22 @@ namespace DoAnAI
                 {
                     Path.Add(popop);
                 }
+                stackNode.Pop();
                 if (temp.Count > 0)
-                {
+                {  
                     foreach (var t in temp)
                     {
-                        var p = stackNode.Peek();
                         if (CheckInPath(t, Path) == true)
                         {
-                            stackNode.Push(new Node() { PreLink = p.CurLink, CurLink = SourceDir + t });
+                            stackNode.Push(new Node() { PreLink = popop.CurLink, CurLink = SourceDir + t });
                         }
                         if (t == goalLinkTextBox.Text)
                         {
-                            Path.Add(new Node() { PreLink = p.CurLink, CurLink = SourceDir + t });
+                            Path.Add(new Node() { PreLink = popop.CurLink, CurLink = SourceDir + t });
                             flag = false;
                         }
                     }
 
-                }
-                if (temp.Count != 0)
-                {
-                    stackNode.Pop();
                 }
             }
             //var superFlag = false;
