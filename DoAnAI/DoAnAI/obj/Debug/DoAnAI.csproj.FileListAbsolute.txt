@@ -8,3 +8,12 @@ C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.csproj.GenerateR
 C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.csproj.CoreCompileInputs.cache
 C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.exe
 C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.pdb
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Debug\DoAnAI.exe.config
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Debug\DoAnAI.exe
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Debug\DoAnAI.pdb
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.csprojAssemblyReference.cache
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.Form1.resources
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.Properties.Resources.resources
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.csproj.GenerateResource.cache
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.exe
+C:\Users\KhangOD\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Debug\DoAnAI.pdb

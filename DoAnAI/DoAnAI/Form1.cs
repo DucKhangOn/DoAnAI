@@ -15,7 +15,7 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
-        public const string SourceDir = @"C:\Users\Thanh\Desktop\Test\";
+        public const string SourceDir = @"C:\Users\KhangOD\Desktop\Test\";
         public struct Node
         {
             public string PreLink;
@@ -23,6 +23,7 @@ namespace DoAnAI
         };
         List<Node> Queue;
         List<Node> Path;
+        Stack<Node> stackNode;
         public Form1()
         {
             InitializeComponent();
@@ -181,6 +182,110 @@ namespace DoAnAI
                 return link;
             }
             return null;
+        }
+
+        private void dfsSearchButton_Click(object sender, EventArgs e)
+        {
+            Path = new List<Node>();
+            stackNode = new Stack<Node>();
+            linkTextBox.Clear();
+            var flag = true;
+
+            var s = docketqua(SourceDir + sourceTextBox.Text);
+            s.Reverse();
+            foreach (var x in s)
+            {
+                stackNode.Push(new Node() { PreLink = SourceDir + sourceTextBox.Text, CurLink = SourceDir + x });
+            }
+
+            //foreach (var stack in stackNode)
+            //{
+            //    linkTextBox.Text += stack.PreLink + ", " + stack.CurLink + Environment.NewLine;
+            //}
+
+            while (flag)
+            {
+                int end = stackNode.Count;
+                if (end == 0)
+                {
+                    break;
+                }
+                var popop = stackNode.Peek();
+                var temp = docketqua(popop.CurLink);
+                temp.Reverse();
+                if (CheckInPath(popop.CurLink, Path))
+                {
+                    Path.Add(popop);
+                }
+                if (temp.Count > 0)
+                {
+                    foreach (var t in temp)
+                    {
+                        var p = stackNode.Peek();
+                        if (CheckInPath(t, Path) == true)
+                        {
+                            stackNode.Push(new Node() { PreLink = p.CurLink, CurLink = SourceDir + t });
+                        }
+                        if (t == goalLinkTextBox.Text)
+                        {
+                            Path.Add(new Node() { PreLink = p.CurLink, CurLink = SourceDir + t });
+                            flag = false;
+                        }
+                    }
+
+                }
+                if (temp.Count != 0)
+                {
+                    stackNode.Pop();
+                }
+            }
+            //var superFlag = false;
+            //foreach (var node in Path)
+            //{
+            //    if (node.CurLink == SourceDir + goalLinkTextBox.Text)
+            //    {
+            //        superFlag = true;
+            //        break;
+            //    }
+            //}
+            //if (superFlag)
+            //{
+            //    var tempFlag = true;
+            //    var tempPath = Path[Path.Count - 1].PreLink;
+            //    List<string> Paths = new List<string>();
+            //    Paths.Add(Path[Path.Count - 1].PreLink.Replace(SourceDir, "") + "->" + Path[Path.Count - 1].CurLink.Replace(SourceDir, "") + Environment.NewLine);
+            //    while (tempFlag)
+            //    {
+            //        foreach (var x in Path)
+            //        {
+            //            if (x.CurLink == tempPath)
+            //            {
+            //                Paths.Add(x.PreLink.Replace(SourceDir, "") + "->" + x.CurLink.Replace(SourceDir, "") + Environment.NewLine);
+            //                tempPath = x.PreLink;
+            //                if (x.PreLink.Replace(SourceDir, "") == sourceTextBox.Text)
+            //                {
+            //                    tempFlag = false;
+            //                    break;
+            //                }
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    Paths.Reverse();
+            //    foreach (var path in Paths)
+            //    {
+            //        linkTextBox.Text += path;
+            //    }
+
+            //}
+            //else if (linkTextBox.Text == "")
+            //{
+            //    linkTextBox.Text += "Không có đường đi";
+            //}
+            foreach (var path in Path)
+            {
+                linkTextBox.Text += path.PreLink + "->" +path.CurLink + Environment.NewLine;
+            }
         }
     }
 }
