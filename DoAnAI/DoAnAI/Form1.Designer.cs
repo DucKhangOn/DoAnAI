@@ -32,6 +32,8 @@
             this.linkTextBox = new System.Windows.Forms.TextBox();
             this.goalLinkTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.sourceTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // readFileButton
@@ -54,7 +56,7 @@
             // 
             // goalLinkTextBox
             // 
-            this.goalLinkTextBox.Location = new System.Drawing.Point(325, 204);
+            this.goalLinkTextBox.Location = new System.Drawing.Point(468, 207);
             this.goalLinkTextBox.Name = "goalLinkTextBox";
             this.goalLinkTextBox.Size = new System.Drawing.Size(105, 20);
             this.goalLinkTextBox.TabIndex = 2;
@@ -62,18 +64,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(266, 207);
+            this.label1.Location = new System.Drawing.Point(409, 210);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Đích đến";
+            // 
+            // sourceTextBox
+            // 
+            this.sourceTextBox.Location = new System.Drawing.Point(223, 203);
+            this.sourceTextBox.Name = "sourceTextBox";
+            this.sourceTextBox.Size = new System.Drawing.Size(105, 20);
+            this.sourceTextBox.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(164, 206);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Nguồn";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 322);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.sourceTextBox);
             this.Controls.Add(this.goalLinkTextBox);
             this.Controls.Add(this.linkTextBox);
             this.Controls.Add(this.readFileButton);
@@ -90,6 +110,8 @@
         private System.Windows.Forms.TextBox linkTextBox;
         private System.Windows.Forms.TextBox goalLinkTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox sourceTextBox;
+        private System.Windows.Forms.Label label2;
     }
 }
 

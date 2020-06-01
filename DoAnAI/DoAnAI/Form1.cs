@@ -15,6 +15,7 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
+        public const string SourceDir = @"C:\Users\Thanh\Desktop\Test\";
         public struct Node
         {
             public string PreLink;
@@ -25,19 +26,25 @@ namespace DoAnAI
         public Form1()
         {
             InitializeComponent();
-            Queue = new List<Node>();
-            Path = new List<Node>();
         }
 
         private void readFileButton_Click(object sender, EventArgs e)
         {
+            Queue = new List<Node>();
+            Path = new List<Node>();
             linkTextBox.Clear();
             var flag = true;
             int index = 0;
-            var s = docketqua(@"C:\Users\Thanh\Desktop\Test\1.html");
+            var s = docketqua(SourceDir + sourceTextBox.Text);
             foreach (var x in s)
             {
-                Queue.Add(new Node() { PreLink = @"C:\Users\Thanh\Desktop\Test\1.html", CurLink = @"C:\Users\Thanh\Desktop\Test\" + x });
+                if (x == goalLinkTextBox.Text)
+                {
+                    linkTextBox.Text += sourceTextBox.Text + "->" + x;
+                    flag = false;
+                    break;                   
+                }
+                Queue.Add(new Node() { PreLink = SourceDir + sourceTextBox.Text, CurLink = SourceDir + x });
             }
             while (flag)
             {
@@ -57,11 +64,11 @@ namespace DoAnAI
                     {
                         if (CheckInPath(t, Path) == true)
                         {
-                            Queue.Add(new Node() { PreLink = Queue[index].CurLink, CurLink = @"C:\Users\Thanh\Desktop\Test\" + t });
+                            Queue.Add(new Node() { PreLink = Queue[index].CurLink, CurLink = SourceDir + t });
                         }
                         if (t == goalLinkTextBox.Text)
                         {
-                            Path.Add(new Node() { PreLink = Queue[index].CurLink, CurLink = @"C:\Users\Thanh\Desktop\Test\" + t });
+                            Path.Add(new Node() { PreLink = Queue[index].CurLink, CurLink = SourceDir + t });
                             flag = false;
                         }
                     }
@@ -76,38 +83,55 @@ namespace DoAnAI
                     index++;
                 }
             }
-            var tempFlag = true;
-            var tempPath = Path[Path.Count - 1].PreLink;
-            List<string> Paths = new List<string>();
-            Paths.Add(Path[Path.Count - 1].PreLink.Replace(@"C:\Users\Thanh\Desktop\Test\", "") + "->" + Path[Path.Count - 1].CurLink.Replace(@"C:\Users\Thanh\Desktop\Test\", "") + Environment.NewLine);
-            while (tempFlag)
+            var superFlag = false;
+            foreach(var node in Path)
             {
-                foreach (var x in Path)
+                if(node.CurLink == SourceDir + goalLinkTextBox.Text)
                 {
-                    if (x.CurLink == tempPath)
+                    superFlag = true;
+                    break;
+                }    
+            }
+            if (superFlag)
+            {
+                var tempFlag = true;
+                var tempPath = Path[Path.Count - 1].PreLink;
+                List<string> Paths = new List<string>();
+                Paths.Add(Path[Path.Count - 1].PreLink.Replace(SourceDir, "") + "->" + Path[Path.Count - 1].CurLink.Replace(SourceDir, "") + Environment.NewLine);
+                while (tempFlag)
+                {
+                    foreach (var x in Path)
                     {
-                        Paths.Add(x.PreLink.Replace(@"C:\Users\Thanh\Desktop\Test\", "") + "->" + x.CurLink.Replace(@"C:\Users\Thanh\Desktop\Test\", "") + Environment.NewLine);
-                        tempPath = x.PreLink;
-                        if (x.PreLink.Replace(@"C:\Users\Thanh\Desktop\Test\", "") == "1.html")
+                        if (x.CurLink == tempPath)
                         {
-                            tempFlag = false;
+                            Paths.Add(x.PreLink.Replace(SourceDir, "") + "->" + x.CurLink.Replace(SourceDir, "") + Environment.NewLine);
+                            tempPath = x.PreLink;
+                            if (x.PreLink.Replace(SourceDir, "") == sourceTextBox.Text)
+                            {
+                                tempFlag = false;
+                                break;
+                            }
                             break;
                         }
-                        break;
-                    }              
+                    }
                 }
-            }         
-            Paths.Reverse();
-            foreach(var path in Paths)
+                Paths.Reverse();
+                    foreach (var path in Paths)
+                    {
+                        linkTextBox.Text += path;
+                    }
+                
+            }
+            else if(linkTextBox.Text == "")
             {
-                linkTextBox.Text += path;
-            }    
+                linkTextBox.Text += "Không có đường đi";
+            }
         }
         public static bool CheckInPath(string path, List<Node> Paths)
         {
             foreach (var node in Paths)
             {
-                if (@"C:\Users\Thanh\Desktop\Test\" + path == node.PreLink)
+                if (SourceDir + path == node.PreLink)
                     return false;
             }
             return true;
@@ -158,6 +182,5 @@ namespace DoAnAI
             }
             return null;
         }
-
     }
 }
