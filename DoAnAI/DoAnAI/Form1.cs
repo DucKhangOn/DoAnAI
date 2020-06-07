@@ -31,6 +31,7 @@ namespace DoAnAI
 
         private void readFileButton_Click(object sender, EventArgs e)
         {
+
             Queue = new List<Node>();
             Path = new List<Node>();
             linkTextBox.Clear();
@@ -85,6 +86,8 @@ namespace DoAnAI
                 }
             }
 
+            ghiketqua(Path);
+
             List<string> Paths = new List<string>();
             Paths = GetResult(Path, Paths, sourceTextBox.Text, goalLinkTextBox.Text);
             if (Paths != null)
@@ -92,6 +95,7 @@ namespace DoAnAI
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
+
                 }
             }
             else if (linkTextBox.Text == "")
@@ -131,6 +135,17 @@ namespace DoAnAI
                 return link;
             }
             return null;
+        }
+
+        public static void ghiketqua(List<Node> Path)
+        {
+            string filePath = "$"+SourceDir+"path.txt";
+            TextWriter writer = new StreamWriter($@"C:\Users\KhangOD\Desktop\Test\path.txt");
+            foreach (Node node in Path)
+            { 
+                writer.WriteLine(node.PreLink + " -> " + node.CurLink); 
+            }
+            writer.Close();
         }
 
         private void dfsSearchButton_Click(object sender, EventArgs e)
@@ -181,6 +196,7 @@ namespace DoAnAI
                             Path.Add(new Node() { PreLink = popop.CurLink, CurLink = SourceDir + t });
                             flag = false;
                         }
+
                     }
 
                 }
@@ -188,7 +204,8 @@ namespace DoAnAI
 
             List<string> Paths = new List<string>();
             Paths = GetResult(Path, Paths, sourceTextBox.Text, goalLinkTextBox.Text);
-            if (Paths != null) {
+            if (Paths != null)
+            {
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
@@ -196,7 +213,7 @@ namespace DoAnAI
             }
             else if (linkTextBox.Text == "")
             {
-                linkTextBox.Text += "Không có đường đi";
+                linkTextBox.Text = "Không có đường đi";
             }
         }
 
