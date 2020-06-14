@@ -320,25 +320,54 @@ namespace DoAnAI
         }
 
         private void iddfsButton_Click(object sender, EventArgs e)
-        {
-            stackNode = new Stack<Node>();
-            Path = new List<Node>();
+        {               
             int iterative = 1;
-            var source = docketqua(SourceDir + sourceTextBox.Text);
-            string sourceLink = sourceTextBox.Text;
             string desLink = "";
-            foreach(var s in source)
+            while (!desLink.Equals(goalLinkTextBox.Text))
             {
-                if(s == goalLinkTextBox.Text)
+                iterative++;
+                stackNode = new Stack<Node>();
+                Path = new List<Node>();
+                var source = docketqua(SourceDir + sourceTextBox.Text);
+                source.Reverse();       
+                foreach (var s in source)
                 {
-                    linkTextBox.Text += sourceTextBox.Text + "->" + s;
-                    sourceLink = desLink;
+                    if (s == goalLinkTextBox.Text)
+                    {
+                        linkTextBox.Text += sourceTextBox.Text + "->" + s;
+                        desLink = s;
+                        break;
+                    }
+                    stackNode.Push(new Node() { PreLink = SourceDir + sourceTextBox.Text, CurLink = SourceDir + s });
+                }
+                if (stackNode.Count == 0)
+                {
                     break;
                 }
-            }
-            while (desLink != goalLinkTextBox.Text)
-            {
+                var temp = stackNode.Peek();
+                var tempLink = docketqua(temp.CurLink);
+                tempLink.Reverse();
+                if(CheckInPath(temp.CurLink,Path))
+                {
+                    Path.Add(temp);
+                }
+                if (tempLink.Count > 0)
+                {
+                    foreach (var t in tempLink)
+                    {
+                        if (CheckInPath(t, Path) == true)
+                        {
+                            stackNode.Push(new Node() { PreLink = temp.CurLink, CurLink = SourceDir + t });
+                        }
+                        if (t == goalLinkTextBox.Text)
+                        {
+                            Path.Add(new Node() { PreLink = temp.CurLink, CurLink = SourceDir + t });
+                            desLink = goalLinkTextBox.Text;
+                            break;
+                        }
 
+                    }
+                }
             }
         }
 
