@@ -280,18 +280,77 @@ namespace DoAnAI
             }
             return null;
         }
+        private static List<string> GetReverseResult(List<Node> Path, List<string> Paths, string source, string goal)
+        {
+            var superFlag = false;
+            foreach (var node in Path)
+            {
+                if (node.CurLink == SourceDir + goal)
+                {
+                    superFlag = true;
+                    break;
+                }
+            }
+            if (superFlag)
+            {
+                var tempFlag = true;
+                var tempPath = Path[Path.Count - 1].PreLink;
+                Paths.Add(Path[Path.Count - 1].CurLink.Replace(SourceDir, "") + "->" + Path[Path.Count - 1].PreLink.Replace(SourceDir, "") + Environment.NewLine);
+                while (tempFlag)
+                {
+                    foreach (var x in Path)
+                    {
+                        if (x.CurLink == tempPath)
+                        {
+                            Paths.Add(x.CurLink.Replace(SourceDir, "") + "->" + x.PreLink.Replace(SourceDir, "") + Environment.NewLine);
+                            tempPath = x.PreLink;
+                            if (x.PreLink.Replace(SourceDir, "") == source)
+                            {
+                                tempFlag = false;
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                }
+                Paths.Reverse();
+                return Paths;
+            }
+            return null;
+        }
 
         private void iddfsButton_Click(object sender, EventArgs e)
         {
+            stackNode = new Stack<Node>();
+            Path = new List<Node>();
+            int iterative = 1;
+            var source = docketqua(SourceDir + sourceTextBox.Text);
+            string sourceLink = sourceTextBox.Text;
+            string desLink = "";
+            foreach(var s in source)
+            {
+                if(s == goalLinkTextBox.Text)
+                {
+                    linkTextBox.Text += sourceTextBox.Text + "->" + s;
+                    sourceLink = desLink;
+                    break;
+                }
+            }
+            while (desLink != goalLinkTextBox.Text)
+            {
 
+            }
         }
 
         private void bidirectionalSearch_Click(object sender, EventArgs e)
         {
+            Node IntersectionNodeForward = new Node();
+            Node IntersectionNodeBackward = new Node();
             QueueForward = new Queue<Node>();
             QueueBackward = new Queue<Node>();
             PathForward = new List<Node>();
             PathBackward = new List<Node>();
+            Path = new List<Node>();
             linkTextBox.Clear();
             var flag = true;
             var source = docketqua(SourceDir + sourceTextBox.Text);
@@ -301,11 +360,13 @@ namespace DoAnAI
                 if (s == goalLinkTextBox.Text)
                 {
                     linkTextBox.Text += sourceTextBox.Text + "->" + s;
+                    IntersectionNodeForward.PreLink = SourceDir + sourceTextBox.Text;
+                    IntersectionNodeForward.CurLink = SourceDir + s;
                     flag = false;
                     break;
                 }
                 var temp = docketqua(SourceDir + s);
-                if (temp.Contains(SourceDir + sourceTextBox.Text))
+                if (temp.Contains(sourceTextBox.Text))
                 {
                     QueueForward.Enqueue(new Node() { PreLink = SourceDir + sourceTextBox.Text, CurLink = SourceDir + s });
                 }
@@ -314,17 +375,19 @@ namespace DoAnAI
             {
                 if (d == sourceTextBox.Text)
                 {
-                    if (source.Contains(SourceDir + d))
+                    if (source.Contains(d))
                     {
                         linkTextBox.Text += sourceTextBox + "->" + d;
+                        IntersectionNodeBackward.PreLink = SourceDir + goalLinkTextBox.Text;
+                        IntersectionNodeBackward.CurLink = SourceDir + d;
                         flag = false;
                         break;
                     }
                 }
                 var temp = docketqua(SourceDir + d);
-                if (temp.Contains(SourceDir + goalLinkTextBox.Text))
+                if (temp.Contains(goalLinkTextBox.Text))
                 {
-                    QueueForward.Enqueue(new Node() { PreLink = SourceDir + goalLinkTextBox.Text, CurLink = SourceDir + d });
+                    QueueBackward.Enqueue(new Node() { PreLink = SourceDir + goalLinkTextBox.Text, CurLink = SourceDir + d });
 
                 }
             }
@@ -335,34 +398,83 @@ namespace DoAnAI
                     break;
                 }
                 var forward = QueueForward.Peek();
+                IntersectionNodeForward = forward;
                 var backward = QueueBackward.Peek();
-                var forwardAble = docketqua(SourceDir + forward);
-                var backwardAble = docketqua(SourceDir + backward);
-                if (CheckInPath(forward.CurLink, Path))
+                IntersectionNodeBackward = backward;
+                var forwardAble = docketqua(forward.CurLink);
+                var backwardAble = docketqua(backward.CurLink);
+                if (CheckInPath(forward.CurLink, PathForward))
                 {
                     PathForward.Add(forward);
                 }
+                if (CheckInPath(backward.CurLink, PathBackward))
+                {
+                    PathBackward.Add(backward);
+                }
                 foreach (var fa in forwardAble)
                 {
-                    var temp = docketqua(SourceDir + fa);
-                    foreach(var t in temp)
+                    if (fa == goalLinkTextBox.Text)
                     {
-                        if(t == SourceDir + goalLinkTextBox.Text)
+                        flag = false;
+                        IntersectionNodeForward = forward;
+                        PathForward.Add(new Node() { PreLink = forward.CurLink, CurLink = SourceDir + fa });
+                        break;
+                    }
+                    if (fa != forward.PreLink.Replace(SourceDir, ""))
+                    {
+                        var temp = docketqua(SourceDir + fa);
+                        if (temp.Contains(forward.CurLink.Replace(SourceDir, "")))
                         {
-                            flag = false;
-                            PathForward.Add(new Node() { PreLink = SourceDir + fa,CurLink = SourceDir + t});
-                            break;
-                        }
-                        if(t != SourceDir + sourceTextBox.Text)
-                        { 
-                            if(t == SourceDir + forward.CurLink)
-                            {
-                                QueueForward.Enqueue(new Node() { PreLink = SourceDir + forward.CurLink, CurLink = SourceDir + t });
-                            }
+                            QueueForward.Enqueue(new Node() { PreLink = forward.CurLink, CurLink = SourceDir + fa });
                         }
                     }
                 }
                 QueueForward.Dequeue();
+                foreach (var ba in backwardAble)
+                {
+                    if (ba == forward.PreLink.Replace(SourceDir, ""))
+                    {
+                        flag = false;
+                        IntersectionNodeBackward = backward;
+                        PathBackward.Add(new Node() { PreLink = backward.CurLink, CurLink = SourceDir + ba });
+                        break;
+                    }
+                    if (ba != backward.PreLink.Replace(SourceDir, ""))
+                    {
+                        var temp = docketqua(SourceDir + ba);
+                        if (temp.Contains(backward.CurLink.Replace(SourceDir, "")))
+                        {
+                            QueueBackward.Enqueue(new Node() { PreLink = backward.CurLink, CurLink = SourceDir + ba });
+                        }
+                    }
+                }
+                QueueBackward.Dequeue();
+                if (IntersectionNodeForward.CurLink != null && IntersectionNodeBackward.CurLink != null && IntersectionNodeForward.CurLink == IntersectionNodeBackward.CurLink)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            List<string> Path1 = new List<string>();
+            List<string> Path2 = new List<string>();
+            List<string> Path3 = new List<string>();
+            if (IntersectionNodeForward.CurLink != null && IntersectionNodeBackward.CurLink != null && IntersectionNodeForward.CurLink == IntersectionNodeBackward.CurLink)
+            {
+                Path1 = GetResult(PathForward, Path1, sourceTextBox.Text, IntersectionNodeForward.CurLink.Replace(SourceDir, ""));
+                Path2 = GetReverseResult(PathBackward, Path2, goalLinkTextBox.Text, IntersectionNodeBackward.CurLink.Replace(SourceDir, ""));
+                string t = IntersectionNodeForward.PreLink.Replace(SourceDir, "") + "->" + IntersectionNodeForward.CurLink.Replace(SourceDir, "") + Environment.NewLine;
+                Path2.Remove(t);
+                Path2.Reverse();
+                Path3 = Path1.Concat(Path2).ToList();
+                foreach(var path in Path3)
+                {
+                    linkTextBox.Text += path;
+                }    
+                linkTextBox.Text += "Trung gian: " + IntersectionNodeForward.CurLink.Replace(SourceDir, "");
+            }
+            else if (linkTextBox.Text == "")
+            {
+                linkTextBox.Text += "Không có đường đi";
             }
         }
     }
