@@ -35,14 +35,15 @@
             this.sourceTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dfsSearchButton = new System.Windows.Forms.Button();
-            this.iddfsButton = new System.Windows.Forms.Button();
             this.bidirectionalSearch = new System.Windows.Forms.Button();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // readFileButton
             // 
-            this.readFileButton.Location = new System.Drawing.Point(75, 247);
+            this.readFileButton.Location = new System.Drawing.Point(308, 246);
             this.readFileButton.Name = "readFileButton";
             this.readFileButton.Size = new System.Drawing.Size(105, 66);
             this.readFileButton.TabIndex = 0;
@@ -60,7 +61,7 @@
             // 
             // goalLinkTextBox
             // 
-            this.goalLinkTextBox.Location = new System.Drawing.Point(468, 207);
+            this.goalLinkTextBox.Location = new System.Drawing.Point(597, 207);
             this.goalLinkTextBox.Name = "goalLinkTextBox";
             this.goalLinkTextBox.Size = new System.Drawing.Size(105, 20);
             this.goalLinkTextBox.TabIndex = 2;
@@ -69,7 +70,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(409, 210);
+            this.label1.Location = new System.Drawing.Point(538, 210);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 3;
@@ -77,7 +78,7 @@
             // 
             // sourceTextBox
             // 
-            this.sourceTextBox.Location = new System.Drawing.Point(223, 203);
+            this.sourceTextBox.Location = new System.Drawing.Point(337, 207);
             this.sourceTextBox.Name = "sourceTextBox";
             this.sourceTextBox.Size = new System.Drawing.Size(105, 20);
             this.sourceTextBox.TabIndex = 2;
@@ -85,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(164, 206);
+            this.label2.Location = new System.Drawing.Point(292, 209);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 3;
@@ -93,7 +94,7 @@
             // 
             // dfsSearchButton
             // 
-            this.dfsSearchButton.Location = new System.Drawing.Point(399, 246);
+            this.dfsSearchButton.Location = new System.Drawing.Point(597, 246);
             this.dfsSearchButton.Name = "dfsSearchButton";
             this.dfsSearchButton.Size = new System.Drawing.Size(105, 66);
             this.dfsSearchButton.TabIndex = 4;
@@ -101,19 +102,9 @@
             this.dfsSearchButton.UseVisualStyleBackColor = true;
             this.dfsSearchButton.Click += new System.EventHandler(this.dfsSearchButton_Click);
             // 
-            // iddfsButton
-            // 
-            this.iddfsButton.Location = new System.Drawing.Point(240, 248);
-            this.iddfsButton.Name = "iddfsButton";
-            this.iddfsButton.Size = new System.Drawing.Size(88, 65);
-            this.iddfsButton.TabIndex = 5;
-            this.iddfsButton.Text = "IDDFS";
-            this.iddfsButton.UseVisualStyleBackColor = true;
-            this.iddfsButton.Click += new System.EventHandler(this.iddfsButton_Click);
-            // 
             // bidirectionalSearch
             // 
-            this.bidirectionalSearch.Location = new System.Drawing.Point(583, 245);
+            this.bidirectionalSearch.Location = new System.Drawing.Point(455, 247);
             this.bidirectionalSearch.Name = "bidirectionalSearch";
             this.bidirectionalSearch.Size = new System.Drawing.Size(101, 65);
             this.bidirectionalSearch.TabIndex = 6;
@@ -123,20 +114,40 @@
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(12, 12);
+            this.webBrowser.Location = new System.Drawing.Point(12, 33);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(250, 185);
+            this.webBrowser.Size = new System.Drawing.Size(250, 248);
             this.webBrowser.TabIndex = 7;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(12, 287);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 8;
+            this.btnNext.Text = "Start";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Url:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 322);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.bidirectionalSearch);
-            this.Controls.Add(this.iddfsButton);
             this.Controls.Add(this.dfsSearchButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -160,9 +171,10 @@
         private System.Windows.Forms.TextBox sourceTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button dfsSearchButton;
-        private System.Windows.Forms.Button iddfsButton;
         private System.Windows.Forms.Button bidirectionalSearch;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label label3;
     }
 }
 

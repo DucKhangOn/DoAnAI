@@ -30,6 +30,7 @@ namespace DoAnAI
         Stack<Node> stackNode;
         Queue<Node> QueueForward;
         Queue<Node> QueueBackward;
+        List<string> showList;
         public Form1()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace DoAnAI
 
         private void readFileButton_Click(object sender, EventArgs e)
         {
-
+            showList = new List<string>();
             Queue = new List<Node>();
             Path = new List<Node>();
             linkTextBox.Clear();
@@ -115,7 +116,7 @@ namespace DoAnAI
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
-
+                    showList.Add(path);
                 }
             }
             else if (linkTextBox.Text == "")
@@ -175,6 +176,7 @@ namespace DoAnAI
 
         private void dfsSearchButton_Click(object sender, EventArgs e)
         {
+            showList = new List<string>();
             Path = new List<Node>();
             stackNode = new Stack<Node>();
             linkTextBox.Clear();
@@ -234,6 +236,7 @@ namespace DoAnAI
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
+                    showList.Add(path);
                 }
             }
             else if (linkTextBox.Text == "")
@@ -280,7 +283,7 @@ namespace DoAnAI
             }
             return null;
         }
-        private static List<string> GetReverseResult(List<Node> Path, List<string> Paths, string source, string goal)
+        private static List<string> GetForwardResult(List<Node> Path, List<string> Paths, string source, string goal)
         {
             var superFlag = false;
             foreach (var node in Path)
@@ -294,8 +297,44 @@ namespace DoAnAI
             if (superFlag)
             {
                 var tempFlag = true;
-                var tempPath = Path[Path.Count - 1].PreLink;
-                Paths.Add(Path[Path.Count - 1].CurLink.Replace(SourceDir, "") + "->" + Path[Path.Count - 1].PreLink.Replace(SourceDir, "") + Environment.NewLine);
+                var tempPath = SourceDir + goal;
+                while (tempFlag)
+                {
+                    foreach (var x in Path)
+                    {
+                        if (x.CurLink == tempPath)
+                        {
+                            Paths.Add(x.PreLink.Replace(SourceDir, "") + "->" + x.CurLink.Replace(SourceDir, "") + Environment.NewLine);
+                            tempPath = x.PreLink;
+                            if (x.PreLink.Replace(SourceDir, "") == source)
+                            {
+                                tempFlag = false;
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                }
+                Paths.Reverse();
+                return Paths;
+            }
+            return null;
+        }
+        private static List<string> GetBackwardResult(List<Node> Path, List<string> Paths, string source, string goal)
+        {
+            var superFlag = false;
+            foreach (var node in Path)
+            {
+                if (node.CurLink == SourceDir + goal)
+                {
+                    superFlag = true;
+                    break;
+                }
+            }
+            if (superFlag)
+            {
+                var tempFlag = true;
+                var tempPath = SourceDir + goal;
                 while (tempFlag)
                 {
                     foreach (var x in Path)
@@ -373,6 +412,7 @@ namespace DoAnAI
 
         private void bidirectionalSearch_Click(object sender, EventArgs e)
         {
+            showList = new List<string>();
             Node IntersectionNodeForward = new Node();
             Node IntersectionNodeBackward = new Node();
             QueueForward = new Queue<Node>();
@@ -430,7 +470,6 @@ namespace DoAnAI
                 if (QueueForward.Count > 0)
                 {
                     forward = QueueForward.Peek();
-                    IntersectionNodeForward = forward;
                     var forwardAble = docketqua(forward.CurLink);
                     if (CheckInPath(forward.CurLink, PathForward))
                     {
@@ -458,7 +497,6 @@ namespace DoAnAI
                 if(QueueBackward.Count > 0)
                 {
                     var backward = QueueBackward.Peek();
-                    IntersectionNodeBackward = backward;
                     var backwardAble = docketqua(backward.CurLink);
 
                     if (CheckInPath(backward.CurLink, PathBackward))
@@ -485,10 +523,18 @@ namespace DoAnAI
                     }
                     QueueBackward.Dequeue();
                 }
-                if (IntersectionNodeForward.CurLink != null && IntersectionNodeBackward.CurLink != null && IntersectionNodeForward.CurLink == IntersectionNodeBackward.CurLink)
+                foreach(var fw in PathForward)
                 {
-                    flag = false;
-                    break;
+                    foreach(var bw in PathBackward)
+                    {
+                        if (fw.CurLink.Equals(bw.CurLink))
+                        {
+                            IntersectionNodeForward = fw;
+                            IntersectionNodeBackward = bw;
+                            flag = false;
+                            break;
+                        }
+                    }
                 }
             }
             List<string> Path1 = new List<string>();
@@ -496,8 +542,8 @@ namespace DoAnAI
             List<string> Path3 = new List<string>();
             if (IntersectionNodeForward.CurLink != null && IntersectionNodeBackward.CurLink != null && IntersectionNodeForward.CurLink == IntersectionNodeBackward.CurLink)
             {
-                Path1 = GetResult(PathForward, Path1, sourceTextBox.Text, IntersectionNodeForward.CurLink.Replace(SourceDir, ""));
-                Path2 = GetReverseResult(PathBackward, Path2, goalLinkTextBox.Text, IntersectionNodeBackward.CurLink.Replace(SourceDir, ""));
+                Path1 = GetForwardResult(PathForward, Path1, sourceTextBox.Text, IntersectionNodeForward.CurLink.Replace(SourceDir, ""));
+                Path2 = GetBackwardResult(PathBackward, Path2, goalLinkTextBox.Text, IntersectionNodeBackward.CurLink.Replace(SourceDir, ""));
                 string t = IntersectionNodeForward.PreLink.Replace(SourceDir, "") + "->" + IntersectionNodeForward.CurLink.Replace(SourceDir, "") + Environment.NewLine;
                 Path2.Remove(t);
                 Path2.Reverse();
@@ -505,12 +551,43 @@ namespace DoAnAI
                 foreach(var path in Path3)
                 {
                     linkTextBox.Text += path;
+                    showList.Add(path);
                 }    
                 linkTextBox.Text += "Trung gian: " + IntersectionNodeForward.CurLink.Replace(SourceDir, "");
             }
             else if (linkTextBox.Text == "")
             {
                 linkTextBox.Text += "Không có đường đi";
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (showList != null)
+            {
+                List<string> hehe = new List<string>();
+                foreach (var row in showList)
+                {
+                    string temp = "";
+                    var end = row.IndexOf("->");
+                    for (int i = 0; i < end; i++)
+                    {
+                        temp += row[i];
+                    }
+                    hehe.Add(temp);
+                }
+                //Show từng file
+                for (int i = 0; i < hehe.Count; i++)
+                {
+                    MessageBox.Show("Access to file " + hehe[i]);
+                    label3.Text = "Url: " + hehe[i];
+                    //Thread.Sleep(1000);
+                    webBrowser.Navigate(SourceDir + hehe[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nothing in Path");
             }
         }
     }
