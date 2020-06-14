@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
-        public const string SourceDir = @"C:\Users\Thanh\Desktop\Test\";
+        public const string SourceDir = @"C:\Users\KhangOD\Desktop\Test\";
         public struct Node
         {
             public string PreLink;
@@ -30,6 +31,7 @@ namespace DoAnAI
         Stack<Node> stackNode;
         Queue<Node> QueueForward;
         Queue<Node> QueueBackward;
+        List<string> showList;
         public Form1()
         {
             InitializeComponent();
@@ -37,7 +39,6 @@ namespace DoAnAI
 
         private void readFileButton_Click(object sender, EventArgs e)
         {
-
             Queue = new List<Node>();
             Path = new List<Node>();
             linkTextBox.Clear();
@@ -45,7 +46,8 @@ namespace DoAnAI
             int index = 0;
             var s = docketqua(SourceDir + sourceTextBox.Text);
             string html = ReadFileHtml(SourceDir + sourceTextBox.Text);
-            webBrowser.Navigate(SourceDir + sourceTextBox.Text);
+            //webBrowser.Navigate(SourceDir + sourceTextBox.Text);
+            //webBrowser.Navigate(SourceDir + "2.html");
             //webBrowser.DocumentText = "0";
             //webBrowser.Document.OpenNew(true);
             //webBrowser.Document.Write(html);
@@ -58,6 +60,7 @@ namespace DoAnAI
             //        link.InvokeMember("Click");
             //    }
             //}
+
             foreach (var x in s)
             {
                 if (x == goalLinkTextBox.Text)
@@ -106,16 +109,23 @@ namespace DoAnAI
                 }
             }
 
+            //foreach (var node in Path)
+            //{
+            //    showList.Add(node.PreLink);
+            //}
+
             ghiketqua(Path);
 
             List<string> Paths = new List<string>();
+            showList = new List<string>();
             Paths = GetResult(Path, Paths, sourceTextBox.Text, goalLinkTextBox.Text);
             if (Paths != null)
             {
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
-
+                    // Add vào check list
+                    showList.Add(path);
                 }
             }
             else if (linkTextBox.Text == "")
@@ -165,7 +175,7 @@ namespace DoAnAI
         public static void ghiketqua(List<Node> Path)
         {
             string filePath = "$" + SourceDir + "path.txt";
-            TextWriter writer = new StreamWriter($@"C:\Users\Thanh\Desktop\Test\path.txt");
+            TextWriter writer = new StreamWriter($@"C:\Users\KhangOD\Desktop\Test\path.txt");
             foreach (Node node in Path)
             {
                 writer.WriteLine(node.PreLink + " -> " + node.CurLink);
@@ -228,12 +238,14 @@ namespace DoAnAI
             }
 
             List<string> Paths = new List<string>();
+            showList = new List<string>();
             Paths = GetResult(Path, Paths, sourceTextBox.Text, goalLinkTextBox.Text);
             if (Paths != null)
             {
                 foreach (var path in Paths)
                 {
                     linkTextBox.Text += path;
+                    showList.Add(path);
                 }
             }
             else if (linkTextBox.Text == "")
@@ -345,17 +357,17 @@ namespace DoAnAI
                 foreach (var fa in forwardAble)
                 {
                     var temp = docketqua(SourceDir + fa);
-                    foreach(var t in temp)
+                    foreach (var t in temp)
                     {
-                        if(t == SourceDir + goalLinkTextBox.Text)
+                        if (t == SourceDir + goalLinkTextBox.Text)
                         {
                             flag = false;
-                            PathForward.Add(new Node() { PreLink = SourceDir + fa,CurLink = SourceDir + t});
+                            PathForward.Add(new Node() { PreLink = SourceDir + fa, CurLink = SourceDir + t });
                             break;
                         }
-                        if(t != SourceDir + sourceTextBox.Text)
-                        { 
-                            if(t == SourceDir + forward.CurLink)
+                        if (t != SourceDir + sourceTextBox.Text)
+                        {
+                            if (t == SourceDir + forward.CurLink)
                             {
                                 QueueForward.Enqueue(new Node() { PreLink = SourceDir + forward.CurLink, CurLink = SourceDir + t });
                             }
@@ -363,6 +375,36 @@ namespace DoAnAI
                     }
                 }
                 QueueForward.Dequeue();
+            }
+        }
+
+        private void bntNext_Click(object sender, EventArgs e)
+        {
+            //Cắt lấy prelink của Path
+            if (showList != null)
+            {
+                List<string> hehe = new List<string>();
+                foreach (var row in showList)
+                {
+                    string temp = "";
+                    var end = row.IndexOf("->");
+                    for (int i = 0; i < end; i++)
+                    {
+                        temp += row[i];
+                    }
+                    hehe.Add(temp);
+                }
+                //Show từng file
+                for (int i = 0; i < hehe.Count; i++)
+                {
+                    MessageBox.Show("Access to file " + hehe[i]);
+                    //Thread.Sleep(1000);
+                    webBrowser.Navigate(SourceDir + hehe[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nothing in Path");
             }
         }
     }
