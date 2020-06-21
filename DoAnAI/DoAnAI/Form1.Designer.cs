@@ -43,12 +43,13 @@
             // 
             // readFileButton
             // 
+            this.readFileButton.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.readFileButton.Location = new System.Drawing.Point(308, 246);
             this.readFileButton.Name = "readFileButton";
             this.readFileButton.Size = new System.Drawing.Size(105, 66);
             this.readFileButton.TabIndex = 0;
             this.readFileButton.Text = "BFS";
-            this.readFileButton.UseVisualStyleBackColor = true;
+            this.readFileButton.UseVisualStyleBackColor = false;
             this.readFileButton.Click += new System.EventHandler(this.readFileButton_Click);
             // 
             // linkTextBox
@@ -94,22 +95,24 @@
             // 
             // dfsSearchButton
             // 
+            this.dfsSearchButton.BackColor = System.Drawing.Color.SandyBrown;
             this.dfsSearchButton.Location = new System.Drawing.Point(597, 246);
             this.dfsSearchButton.Name = "dfsSearchButton";
             this.dfsSearchButton.Size = new System.Drawing.Size(105, 66);
             this.dfsSearchButton.TabIndex = 4;
             this.dfsSearchButton.Text = "DFS";
-            this.dfsSearchButton.UseVisualStyleBackColor = true;
+            this.dfsSearchButton.UseVisualStyleBackColor = false;
             this.dfsSearchButton.Click += new System.EventHandler(this.dfsSearchButton_Click);
             // 
             // bidirectionalSearch
             // 
+            this.bidirectionalSearch.BackColor = System.Drawing.Color.Orchid;
             this.bidirectionalSearch.Location = new System.Drawing.Point(455, 247);
             this.bidirectionalSearch.Name = "bidirectionalSearch";
             this.bidirectionalSearch.Size = new System.Drawing.Size(101, 65);
             this.bidirectionalSearch.TabIndex = 6;
             this.bidirectionalSearch.Text = "BDS";
-            this.bidirectionalSearch.UseVisualStyleBackColor = true;
+            this.bidirectionalSearch.UseVisualStyleBackColor = false;
             this.bidirectionalSearch.Click += new System.EventHandler(this.bidirectionalSearch_Click);
             // 
             // webBrowser
@@ -122,12 +125,13 @@
             // 
             // btnNext
             // 
+            this.btnNext.BackColor = System.Drawing.Color.PeachPuff;
             this.btnNext.Location = new System.Drawing.Point(12, 287);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 8;
             this.btnNext.Text = "Start";
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // label3
@@ -143,6 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(739, 322);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnNext);
