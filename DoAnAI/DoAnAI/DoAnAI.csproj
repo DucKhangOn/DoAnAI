@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C74637CB-0C30-41C6-8A67-5B0D3938258E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DoAnAI</RootNamespace>
+    <AssemblyName>DoAnAI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\1.html" />
+    <Content Include="Data\10.html" />
+    <Content Include="Data\100.html" />
+    <Content Include="Data\11.html" />
+    <Content Include="Data\12.html" />
+    <Content Include="Data\13.html" />
+    <Content Include="Data\14.html" />
+    <Content Include="Data\15.html" />
+    <Content Include="Data\16.html" />
+    <Content Include="Data\17.html" />
+    <Content Include="Data\18.html" />
+    <Content Include="Data\19.html" />
+    <Content Include="Data\2.html" />
+    <Content Include="Data\20.html" />
+    <Content Include="Data\21.html" />
+    <Content Include="Data\22.html" />
+    <Content Include="Data\23.html" />
+    <Content Include="Data\24.html" />
+    <Content Include="Data\25.html" />
+    <Content Include="Data\26.html" />
+    <Content Include="Data\27.html" />
+    <Content Include="Data\28.html" />
+    <Content Include="Data\29.html" />
+    <Content Include="Data\3.html" />
+    <Content Include="Data\30.html" />
+    <Content Include="Data\31.html" />
+    <Content Include="Data\32.html" />
+    <Content Include="Data\33.html" />
+    <Content Include="Data\34.html" />
+    <Content Include="Data\35.html" />
+    <Content Include="Data\36.html" />
+    <Content Include="Data\37.html" />
+    <Content Include="Data\38.html" />
+    <Content Include="Data\39.html" />
+    <Content Include="Data\4.html" />
+    <Content Include="Data\40.html" />
+    <Content Include="Data\41.html" />
+    <Content Include="Data\42.html" />
+    <Content Include="Data\43.html" />
+    <Content Include="Data\44.html" />
+    <Content Include="Data\45.html" />
+    <Content Include="Data\46.html" />
+    <Content Include="Data\47.html" />
+    <Content Include="Data\48.html" />
+    <Content Include="Data\49.html" />
+    <Content Include="Data\5.html" />
+    <Content Include="Data\50.html" />
+    <Content Include="Data\51.html" />
+    <Content Include="Data\52.html" />
+    <Content Include="Data\53.html" />
+    <Content Include="Data\54.html" />
+    <Content Include="Data\55.html" />
+    <Content Include="Data\56.html" />
+    <Content Include="Data\57.html" />
+    <Content Include="Data\58.html" />
+    <Content Include="Data\59.html" />
+    <Content Include="Data\6.html" />
+    <Content Include="Data\60.html" />
+    <Content Include="Data\61.html" />
+    <Content Include="Data\62.html" />
+    <Content Include="Data\63.html" />
+    <Content Include="Data\64.html" />
+    <Content Include="Data\65.html" />
+    <Content Include="Data\66.html" />
+    <Content Include="Data\67.html" />
+    <Content Include="Data\68.html" />
+    <Content Include="Data\69.html" />
+    <Content Include="Data\7.html" />
+    <Content Include="Data\70.html" />
+    <Content Include="Data\71.html" />
+    <Content Include="Data\72.html" />
+    <Content Include="Data\73.html" />
+    <Content Include="Data\74.html" />
+    <Content Include="Data\75.html" />
+    <Content Include="Data\76.html" />
+    <Content Include="Data\77.html" />
+    <Content Include="Data\78.html" />
+    <Content Include="Data\79.html" />
+    <Content Include="Data\8.html" />
+    <Content Include="Data\80.html" />
+    <Content Include="Data\81.html" />
+    <Content Include="Data\82.html" />
+    <Content Include="Data\83.html" />
+    <Content Include="Data\84.html" />
+    <Content Include="Data\85.html" />
+    <Content Include="Data\86.html" />
+    <Content Include="Data\87.html" />
+    <Content Include="Data\88.html" />
+    <Content Include="Data\89.html" />
+    <Content Include="Data\9.html" />
+    <Content Include="Data\91.html" />
+    <Content Include="Data\92.html" />
+    <Content Include="Data\93.html" />
+    <Content Include="Data\94.html" />
+    <Content Include="Data\95.html" />
+    <Content Include="Data\96.html" />
+    <Content Include="Data\97.html" />
+    <Content Include="Data\98.html" />
+    <Content Include="Data\99.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
