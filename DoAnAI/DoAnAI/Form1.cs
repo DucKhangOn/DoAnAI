@@ -17,11 +17,7 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
-<<<<<<< HEAD
         public const string SourceDir = @"Data\";
-=======
-        public const string SourceDir = @"C:\Users\KhangOD\Desktop\Test\";
->>>>>>> 84b03d27f7d5b6db7fe30a1f2f1a60317cfd1fe8
         public struct Node
         {
             public string PreLink;
