@@ -1,0 +1,10 @@
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Release\DoAnAI.exe.config
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Release\DoAnAI.exe
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\bin\Release\DoAnAI.pdb
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.csprojAssemblyReference.cache
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.Form1.resources
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.Properties.Resources.resources
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.csproj.GenerateResource.cache
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.csproj.CoreCompileInputs.cache
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.exe
+C:\Users\Thanh\Desktop\AI\DoAnAI\DoAnAI\DoAnAI\obj\Release\DoAnAI.pdb
