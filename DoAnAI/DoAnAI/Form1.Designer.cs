@@ -44,9 +44,10 @@
             // readFileButton
             // 
             this.readFileButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.readFileButton.Location = new System.Drawing.Point(308, 246);
+            this.readFileButton.Location = new System.Drawing.Point(411, 303);
+            this.readFileButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.readFileButton.Name = "readFileButton";
-            this.readFileButton.Size = new System.Drawing.Size(105, 66);
+            this.readFileButton.Size = new System.Drawing.Size(140, 81);
             this.readFileButton.TabIndex = 0;
             this.readFileButton.Text = "BFS";
             this.readFileButton.UseVisualStyleBackColor = false;
@@ -54,51 +55,58 @@
             // 
             // linkTextBox
             // 
-            this.linkTextBox.Location = new System.Drawing.Point(295, 12);
+            this.linkTextBox.Location = new System.Drawing.Point(393, 15);
+            this.linkTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.linkTextBox.Multiline = true;
             this.linkTextBox.Name = "linkTextBox";
-            this.linkTextBox.Size = new System.Drawing.Size(407, 166);
+            this.linkTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.linkTextBox.Size = new System.Drawing.Size(541, 203);
             this.linkTextBox.TabIndex = 1;
             // 
             // goalLinkTextBox
             // 
-            this.goalLinkTextBox.Location = new System.Drawing.Point(597, 207);
+            this.goalLinkTextBox.Location = new System.Drawing.Point(796, 255);
+            this.goalLinkTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.goalLinkTextBox.Name = "goalLinkTextBox";
-            this.goalLinkTextBox.Size = new System.Drawing.Size(105, 20);
+            this.goalLinkTextBox.Size = new System.Drawing.Size(139, 22);
             this.goalLinkTextBox.TabIndex = 2;
             this.goalLinkTextBox.Text = " ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(538, 210);
+            this.label1.Location = new System.Drawing.Point(717, 258);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(64, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Đích đến";
             // 
             // sourceTextBox
             // 
-            this.sourceTextBox.Location = new System.Drawing.Point(337, 207);
+            this.sourceTextBox.Location = new System.Drawing.Point(449, 255);
+            this.sourceTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sourceTextBox.Name = "sourceTextBox";
-            this.sourceTextBox.Size = new System.Drawing.Size(105, 20);
+            this.sourceTextBox.Size = new System.Drawing.Size(139, 22);
             this.sourceTextBox.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(292, 209);
+            this.label2.Location = new System.Drawing.Point(389, 257);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.Size = new System.Drawing.Size(50, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Nguồn";
             // 
             // dfsSearchButton
             // 
             this.dfsSearchButton.BackColor = System.Drawing.Color.SandyBrown;
-            this.dfsSearchButton.Location = new System.Drawing.Point(597, 246);
+            this.dfsSearchButton.Location = new System.Drawing.Point(796, 303);
+            this.dfsSearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dfsSearchButton.Name = "dfsSearchButton";
-            this.dfsSearchButton.Size = new System.Drawing.Size(105, 66);
+            this.dfsSearchButton.Size = new System.Drawing.Size(140, 81);
             this.dfsSearchButton.TabIndex = 4;
             this.dfsSearchButton.Text = "DFS";
             this.dfsSearchButton.UseVisualStyleBackColor = false;
@@ -107,9 +115,10 @@
             // bidirectionalSearch
             // 
             this.bidirectionalSearch.BackColor = System.Drawing.Color.Orchid;
-            this.bidirectionalSearch.Location = new System.Drawing.Point(455, 247);
+            this.bidirectionalSearch.Location = new System.Drawing.Point(607, 304);
+            this.bidirectionalSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bidirectionalSearch.Name = "bidirectionalSearch";
-            this.bidirectionalSearch.Size = new System.Drawing.Size(101, 65);
+            this.bidirectionalSearch.Size = new System.Drawing.Size(135, 80);
             this.bidirectionalSearch.TabIndex = 6;
             this.bidirectionalSearch.Text = "BDS";
             this.bidirectionalSearch.UseVisualStyleBackColor = false;
@@ -117,18 +126,20 @@
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(12, 33);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Location = new System.Drawing.Point(16, 41);
+            this.webBrowser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(250, 248);
+            this.webBrowser.Size = new System.Drawing.Size(333, 305);
             this.webBrowser.TabIndex = 7;
             // 
             // btnNext
             // 
             this.btnNext.BackColor = System.Drawing.Color.PeachPuff;
-            this.btnNext.Location = new System.Drawing.Point(12, 287);
+            this.btnNext.Location = new System.Drawing.Point(16, 353);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(100, 28);
             this.btnNext.TabIndex = 8;
             this.btnNext.Text = "Start";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -137,18 +148,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 12);
+            this.label3.Location = new System.Drawing.Point(16, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.Size = new System.Drawing.Size(30, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Url:";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(739, 322);
+            this.ClientSize = new System.Drawing.Size(985, 396);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.webBrowser);
@@ -160,6 +172,7 @@
             this.Controls.Add(this.goalLinkTextBox);
             this.Controls.Add(this.linkTextBox);
             this.Controls.Add(this.readFileButton);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -17,7 +17,11 @@ namespace DoAnAI
 
     public partial class Form1 : Form
     {
+<<<<<<< HEAD
         public const string SourceDir = @"Data\";
+=======
+        public const string SourceDir = @"C:\Users\KhangOD\Desktop\Test\";
+>>>>>>> 84b03d27f7d5b6db7fe30a1f2f1a60317cfd1fe8
         public struct Node
         {
             public string PreLink;
@@ -212,7 +216,7 @@ namespace DoAnAI
         public static void ghiketqua(List<Node> Path)
         {
             string filePath = "$" + SourceDir + "path.txt";
-            TextWriter writer = new StreamWriter($@"C:\Users\Thanh\Desktop\Test\path.txt");
+            TextWriter writer = new StreamWriter($@"C:\Users\KhangOD\Desktop\Test\path.txt");
             foreach (Node node in Path)
             {
                 writer.WriteLine(node.PreLink + " -> " + node.CurLink);
@@ -534,8 +538,9 @@ namespace DoAnAI
                 Node desTemp = new Node();
                 fwBFS = new List<Node>();
                 bwBFS = new List<Node>();
-                if (fwQueue.Count == 0 && bwQueue.Count == 0)
+                if (fwQueue.Count == 0 || bwQueue.Count == 0)
                 {
+                    IntersectionNodeForward = new Node();
                     break;
                 }
                 if (fwQueue.Count > 0)
